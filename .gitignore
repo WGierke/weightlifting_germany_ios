@@ -49,6 +49,7 @@ node_modules
 
 # OS X
 .DS_Store
+/ios/build/
 
 # Test generated files
 /ReactAndroid/src/androidTest/assets/AndroidTestBundle.js
