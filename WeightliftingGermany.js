@@ -11,15 +11,6 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 export default class WeightliftingGermany extends Component {
   render() {
-    return (
-      <View style={{ flex: 1, backgroundColor: '#153387', }}>
-      </View>
-    );
-  }
-}
-
-export default React.createClass({
-  render() {
     return <ScrollableTabView
       style={{marginTop: 20, }}
       initialPage={1}
@@ -41,8 +32,8 @@ export default React.createClass({
         </View>
       </ScrollView>
     </ScrollableTabView>
-  },
-});
+  }
+};
 
 const styles = StyleSheet.create({
   tabView: {
