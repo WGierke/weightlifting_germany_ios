@@ -6,34 +6,61 @@ import {
   ScrollView,
 } from 'react-native';
 
-import TabBar from './TabBar';
+import TabBar from './components/TabBar';
+import TabView from './components/TabView'
 import ScrollableTabView from 'react-native-scrollable-tab-view';
+import {Scene, Router, Modal} from 'react-native-router-flux';
+import Home from './components/Home'
+import NavigationDrawer from './components/NavigationDrawer'
+import Season1A from './components/Season1A'
 
-export default class WeightliftingGermany extends Component {
+class TabIcon extends React.Component {
+    render(){
+        return (
+            <Text style={{color: this.props.selected ? "red" :"black"}}>{this.props.title}</Text>
+        );
+    }
+}
+
+class Right extends React.Component {
+    render(){
+        return <Text style={{
+        width: 80,
+        height: 37,
+        position: "absolute",
+        bottom: 4,
+        right: 2,
+        padding: 8,
+    }}>Right</Text>
+    }
+}
+
+export default class WeightliftingGermany extends React.Component {
   render() {
-    return <ScrollableTabView
-      style={{marginTop: 20, }}
-      initialPage={1}
-      renderTabBar={() => <TabBar />}
-      >
-      <ScrollView tabLabel="ios-calendar" style={styles.tabView}>
-        <View style={styles.card}>
-          <Text>Ansetzungen</Text>
-        </View>
-      </ScrollView>
-      <ScrollView tabLabel="ios-podium" style={styles.tabView}>
-        <View style={styles.card}>
-          <Text>Wettkämpfe</Text>
-        </View>
-      </ScrollView>
-      <ScrollView tabLabel="ios-ribbon" style={styles.tabView}>
-        <View style={styles.card}>
-          <Text>Tabelle</Text>
-        </View>
-      </ScrollView>
-    </ScrollableTabView>
+    return <Router>
+      <Scene key="modal" component={Modal} >
+        <Scene key="root">
+          <Scene key="tabbar" component={NavigationDrawer}>
+            <Scene key="main" tabs={true} >
+              <Scene key="tab1"  title="Tab #1" icon={TabIcon} navigationBarStyle={{backgroundColor:"red"}} titleStyle={{color:"white"}}>
+                    <Scene key="tab1_1" component={TabView} title="Tab #1_1" onRight={()=>alert("Right button")} rightTitle="Right" />
+                    <Scene key="tab1_2" component={TabView} title="Tab #1_2" titleStyle={{color:"black"}}/>
+                </Scene>
+                <Scene key="tab2" initial={true} title="Tab #2" icon={TabIcon}>
+                    <Scene key="tab2_1" component={TabView} title="Tab #2_1" renderRightButton={()=><Right/>} />
+                    <Scene key="tab2_2" component={TabView} title="Tab #2_2" hideBackImage onBack={()=>alert("Left button!")} backTitle="Left" duration={1} panHandlers={null}/>
+                </Scene>
+                <Scene key="tab3" component={TabView} title="Tab #3" hideTabBar={true} icon={TabIcon}/>
+                <Scene key="tab4" component={TabView} title="Tab #4" hideNavBar={true} icon={TabIcon}/>
+                <Scene key="tab5" component={TabView} title="Tab #5" hideTabBar={true} hideNavBar={true} icon={TabIcon}/>
+            </Scene>
+          </Scene>
+          <Scene key="login" component={Season1A} title="Login"/>
+        </Scene>
+      </Scene>
+    </Router>
   }
-};
+}
 
 const styles = StyleSheet.create({
   tabView: {
