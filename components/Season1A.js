@@ -8,12 +8,11 @@ import {
 
 import TabBar from './TabBar';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
-import {Scene, Router} from 'react-native-router-flux';
 
 export default class Season1A extends Component {
   render() {
     return <ScrollableTabView
-      style={{marginTop: 20, }}
+      style={{marginTop: 65, }}
       initialPage={1}
       renderTabBar={() => <TabBar />}
       >
