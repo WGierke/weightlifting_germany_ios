@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const TabView = (props, context) => {
+const NavigationMenuView = (props, context) => {
   const drawer = context.drawer;
   return (
     <View style={[styles.container, props.sceneStyle ]}>
@@ -47,7 +47,7 @@ const TabView = (props, context) => {
   );
 };
 
-TabView.contextTypes = contextTypes;
-TabView.propTypes = propTypes;
+NavigationMenuView.contextTypes = contextTypes;
+NavigationMenuView.propTypes = propTypes;
 
-export default TabView;
+export default NavigationMenuView;
